@@ -1,11 +1,27 @@
-import { SpryngRequest } from "./http";
-import { Message } from "./message";
+import { Message, PartialMessage } from "./message";
+import { CancelMessageParams, ListMessageFilters, RequestIncludes, ShowMessageParams } from "./parameters";
+
+export interface SendMessageSpec {
+    (message: PartialMessage): Message | Promise<Message>
+}
+
+export interface ListMessageSpec {
+    (params?: ListMessageFilters, includes?: RequestIncludes): ListMessageResponse | Promise<ListMessageResponse>
+}
+
+export interface ShowMessageSpec {
+    (params: ShowMessageParams, includes?: RequestIncludes): Message | Promise<Message>
+}
+
+export interface CancelMessageSpec {
+    (params: CancelMessageParams): boolean | Promise<boolean>
+}
 
 export interface MessageApiSpec {
-    create: SpryngRequest
-    list: SpryngRequest
-    show: SpryngRequest
-    cancel: SpryngRequest
+    send: SendMessageSpec
+    list: ListMessageSpec
+    show: ShowMessageSpec
+    cancel: CancelMessageSpec
 }
 
 export interface ListMessageResponse {
