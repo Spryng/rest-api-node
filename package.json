@@ -1,6 +1,6 @@
 {
-  "name": "spryng-rest-sdk",
-  "version": "0.1.0",
+  "name": "spryng",
+  "version": "1.0.0",
   "description": "NodeJS SDK for the Spryng SMS API",
   "main": "dist/index.js",
   "repository": "https://github.com/spryng/rest-api-node",

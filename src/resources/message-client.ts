@@ -1,4 +1,3 @@
-import Axios from "axios";
 import { ListMessageResponse, MessageApiSpec } from "../interfaces/api";
 import { PartialMessage, Message } from "../interfaces/message";
 import { CancelMessageParams, ListMessageFilters, RequestIncludes, ShowMessageParams } from "../interfaces/parameters";

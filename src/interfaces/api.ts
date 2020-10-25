@@ -1,3 +1,4 @@
+import { Balance } from "./balance";
 import { Message, PartialMessage } from "./message";
 import { CancelMessageParams, ListMessageFilters, RequestIncludes, ShowMessageParams } from "./parameters";
 
@@ -22,6 +23,14 @@ export interface MessageApiSpec {
     list: ListMessageSpec
     show: ShowMessageSpec
     cancel: CancelMessageSpec
+}
+
+export interface GetBalanceSpec {
+    (): Balance | Promise<Balance>
+}
+
+export interface BalanceApiSpec {
+    get: GetBalanceSpec
 }
 
 export interface ListMessageResponse {

@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from "axios"
 import { stringify } from "qs"
 import { SpryngRequest } from "./interfaces/http"
+import { BalanceClient } from "./resources/balance-client"
 import { MessageClient } from "./resources/message-client"
 
 const API_BASE_URL = 'https://rest.spryngsms.com/v1'
@@ -13,6 +14,7 @@ export class Spryng {
     private apiKey: string
 
     public message = new MessageClient(this)
+    public balance = new BalanceClient(this)
 
     constructor(apiKey: string) {
         this.baseURL = API_BASE_URL
