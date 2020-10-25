@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios"
-import { stringify } from "querystring"
+import { stringify } from "qs"
 import { SpryngRequest } from "./interfaces/http"
 import { MessageClient } from "./resources/message-client"
 
@@ -23,9 +23,10 @@ export class Spryng {
 
     async sendRequest(request: SpryngRequest) {
         // Add params to the url if any are set
-        const url = request.parameters
-            ? `${request.endpoint}?${stringify(request.parameters)}`
-            : request.endpoint
+        const query = this.generateQueryString(request)
+        const url = query.length 
+            ? `${request.endpoint}?${this.generateQueryString(request)}`
+            : `${request.endpoint}`
 
         return this.http.request({
             url: url,
@@ -37,5 +38,15 @@ export class Spryng {
                 'User-Agent': `spryng-node/${this.version}`
             }
         })
+    }
+
+    generateQueryString(request: SpryngRequest) {
+        const query = {
+            filters: request.filters,
+            includes: request.includes,
+            parameters: request.parameters
+        }
+
+        return stringify(query)
     }
 }

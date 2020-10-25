@@ -1,5 +1,5 @@
 import { PartialMessage } from "./message"
-import { RequestParameters } from "./parameters"
+import { RequestFilters, RequestIncludes, RequestParameters } from "./parameters"
 
 export type HttpRequestType = 'GET' | 'POST'
 
@@ -11,5 +11,7 @@ export interface SpryngRequest {
     headers: Header[]
     requestType: HttpRequestType
     parameters?: RequestParameters
+    filters?: RequestFilters
+    includes?: RequestIncludes
     body?: PartialMessage
 }
