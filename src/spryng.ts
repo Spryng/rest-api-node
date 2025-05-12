@@ -35,9 +35,11 @@ export class Spryng {
             method: request.requestType,
             data: request.body,
             headers: {
-                ...request.headers,
                 Authorization: `Bearer ${this.apiKey}`,
-                'User-Agent': `spryng-node/${this.version}`
+                'User-Agent': `spryng-node/${this.version}`,
+                ...(request.headers && request.headers.length > 0 ?
+                    request.headers.reduce((acc, h) => acc = {...acc, ...h})
+                    : {}),
             }
         })
     }
